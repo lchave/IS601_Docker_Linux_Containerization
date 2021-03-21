@@ -65,6 +65,99 @@
 		</div>
 	</header>
 
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="display-4 text-center">Using Docker to Setup a Webserver</h1>
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col-lg-10 mx-auto text-lg-start text-dark" class="img-fluid">
+      <ul class="timeline">
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <img src="https://miro.medium.com/max/700/1*JUOITpaBdlrMP9D__-K5Fw.png" class="img-fluid" alt="...">
+                        <h2 class="h5 mb-0 text-dark">1. Install Docker on your computer.</h2>
+                        <ul> <p class="text-small mt-2 font-weight-light text-dark">Check if Docker is working using the following instructions:</p></ul>
+                        <ul>a. Open the command prompt on your computer </ul>
+                        <ul>b. Type in the command: docker run hello world</ul>
+                        <ul>c. If you get the following response, then it is working correctly: </ul>
+                    </li>
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0 text-dark">2. Pull an Ubuntu Image from Docker hub using the command: docker pull Ubuntu
+                        <p class="text-small mt-2 font-weight-light text-dark">
+                    </li>
+
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0 text-dark">3. Install vim and apache2 in a docker container then save the container.</h2><span class="small text-gray">
+                        <p class="text-small mt-2 font-weight-light text-dark">a. Run Ubuntu Image to start a docker container and log into this Ubuntu container with the following command:
+                        <ul>docker run -it ubuntu:latest /bin/bash</ul>
+                        <p class="text-small mt-2 font-weight-light text-dark">After you do this, the prompt will show you the container number. The number for this container is 728860e9b0
+                        <p class="text-small mt-2 font-weight-light text-dark">b. Install Applications in this Ubuntu container:
+                            <ul>(1) Use the command: apt-get update</ul>
+                            <ul>(2) Install apache 2 using the command: apt-get install apache (When the response asks for a time zone - enter the correct number for your time zone)</ul>
+                            <ul>(3) Install Vim Editor by using the following command: apt-get install vim</ul>
+                        <p class="text-small mt-2 font-weight-light text-dark"> c. Exit the Ubuntu container with the command: exit
+                        <p class="text-small mt-2 font-weight-light text-dark"> d. Commit the container to create a new docker image:
+                            <ul>(1) Check the container with this command: docker ps-a</ul>
+                            <ul>(2) Create a new docker image with this command: docker commit 728860e9bf90 ubuntu-my_apache2</ul>
+                            <ul> "728860e9bf90" is the container ID and "ubuntu-my_apache2" is the name of a new Docker image.</ul>
+                            <ul>(3) Check the new image using the command: docker images</ul>
+                    </li>
+
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">4. Sharing Data between a Docker Container and a Host:</h2><span class="small text-gray">
+                        <p class="text-small mt-2 font-weight-light text-dark">a. Find the file path for "docker tutorial in your directory.
+                        <p class="text-small mt-2 font-weight-light text-dark">b. Use the command: “docker run -it -p 127.0.0.1:80:80 -v C:\Docker_tutorial\local_dir:/var/www/html ubuntu-my_apache2 /bin/bash”
+                        <p class="text-small mt-2 font-weight-light text-dark">c. If the file path is different, make sure you include the correct file path in the command
+                        <p class="text-small mt-2 font-weight-light text-dark">d. In the above filepath:
+                        <ul>-it: indicates you are logging into the interactive shell</ul>
+                        <ul>-p: exposes a port of the docker container</ul>
+                        <ul>“docker run -it -p 127.0.0.1:80:80 -v C:\Docker_tutorial\local_dir:/var/www/html ubuntu-my_apache2 /bin/bash”</ul>
+                        <ul>-v: binds a host directory to the docker container</ul>
+                        <ul>/var/www/html: is the default location for the entry webpage of the directory (we can use index.html)</ul>
+                        </li>
+
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">5. Using the VI Editor In Unix </h2><span class="small text-gray">
+                        <p class="text-small mt-2 font-weight-light text-dark"> a. Check the present working directory with command: pwd. Go into html directory “/var/www/html” with command: cd/var/www/html
+                        <p class="text-small mt-2 font-weight-light text-dark"> b. Create an “index.html” file using command: vi index.html
+                        <p class="text-small mt-2 font-weight-light text-dark"> c. You will now be in the VI/Vim editor file index.html:
+                            <ul>(1) In order to edit within the editor, press the “i” key to begin editing.</ul>
+                            <ul>(2) You will see “--INSERT--” at the bottom of the command window which indicates that you can begin typing html source code.</ul>
+                            <ul>(3) Write a sample code to see if it works.</ul>
+                            <ul>(4) After completing your sample code for the index.html file, press “ESC” computer key and this will bring you to the bottom of your command window. You will type “:wq” to save and quit the editor</ul>
+                            <ul>(5) So – here is the file path: C: /Docker_tutorial/local_dir/index.html</ul>
+                    </li>
+
+                    <li class="timeline-item bg-white rounded ml-3 p-4 shadow">
+                        <div class="timeline-arrow"></div>
+                        <h2 class="h5 mb-0">6. Using Docker to host your website </h2><span class="small text-gray">
+                        <p class="text-small mt-2 font-weight-light text-dark"> a. Enter your docker container terminal from your Docker Desktop
+                        <p class="text-small mt-2 font-weight-light text-dark"> b. Start apache service using the following command in the container:# /etc/init.d/apache2 restart
+                        <p class="text-small mt-2 font-weight-light text-dark">c. Next, enter the following command: docker run -it -p 127.0.0.1:80:80 -v C:\Docker_tutorial\local_dir:/var/www/html ubuntu-my_apache2 /bin/bash (Make sure you check the file path)
+                    </li>
+
+      </ul><!-- End -->
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
