@@ -83,17 +83,93 @@
 				<h3>Create a repository</h3>
 				<p>Once you have completed all the requirements, you may create a new repository with a folder\file structure like the one below:</p>
 				<img src="Images/DockerPyCharm_01.png" alt="File Structure">
-				<h3>Contents of each of the files in the repository</h3>
-				<div class="example-container">
-					<div class="d-flex justify-content-between example-top"> <strong>.gitignore</strong> <button id="bdg-learn-code-copy-92" class="btn copy-btn" onclick="addToClipboard(92);"><i class="far fa-copy"></i> Copy</button> </div>
-						<div id="code-92">
-							<pre><code>
-							  a = 6;
-							  b = 9;
-							  c = "this is the best program";
-							</code></pre>
-						</div>
+				</br></br><h3>Contents of each of the files in the repository</h3>
+				</br></br><div class="example-container">
+					<div class="d-flex justify-content-between example-top">
+						<strong>.gitignore</strong>
+						<!-- <button class="btn copy-btn" id="copy-btn" onclick="copyToClipboard()">Copy</button> -->
+					</div>
+					<div>
+					<pre><code id="gitignore">
+.idea
+/venv/
+					</code></pre>
+					</div>
 				</div>
+				</br></br><div class="example-container">
+					<div class="d-flex justify-content-between example-top">
+						<strong>src/my_script.py</strong>
+						<!-- <button class="btn copy-btn" id="copy-btn" onclick="copyToClipboard()">Copy</button> -->
+					</div>
+					<div>
+					<pre><code id="gitignore">
+# Sample taken from pyStrich GitHub repository
+# https://github.com/mmulqueen/pyStrich
+from pystrich.datamatrix import DataMatrixEncoder
+
+encoder = DataMatrixEncoder('This is a DataMatrix.')
+encoder.save('./datamatrix_test.png')
+print(encoder.get_ascii())						
+					</code></pre>
+					</div>
+				</div>
+				</br></br><div class="example-container">
+					<div class="d-flex justify-content-between example-top">
+						<strong>Dockerfile</strong>
+						<!-- <button class="btn copy-btn" id="copy-btn" onclick="copyToClipboard()">Copy</button> -->
+					</div>
+					<div>
+					<pre><code id="gitignore">
+FROM python:3
+ADD src /src
+RUN pip install pystrich
+CMD [ "python", "./src/my_script.py" ]
+					</code></pre>
+					</div>
+				</div>
+				<h3>Connect PyCharm to Docker environment</h3>
+				<ol>
+					<li>Navigate to <b>File -> Settings</b> (on Windows) or <b>Preferences</b> (on macOS)</li>
+					<img src="Images/DockerPyCharm_02.png" alt="File Settings">
+					<li>Under the <b>Settings</b> menu, expand <b>Build, Execution, Deployment</b>, select <b>Docker</b> and click on the <b>‘+’</b> icon to add a Docker environment.</li>
+					<img src="Images/DockerPyCharm_03.png" alt="File Settings" class="w-100">
+					<li>Select the correct Docker daemon and ensure Pycharm can establish a connection to it.
+					</br><b>Note:</b> This will vary depending on the environment you are running.
+						<ol type="a">
+							<li>Docker Toolbox running on a Windows Non-Pro (Windows Home) operating system.</li>
+							<img src="Images/DockerPyCharm_04.png" alt="File Settings" class="w-100">
+							</br><b>Note:</b> This will require a change in the Docker settings to ensure you expose the daemon on a specific TCP port without TLS.
+							<img src="Images/DockerPyCharm_05.png" alt="File Settings" class="w-100">
+							<li>Docker Native running on a Windows Pro operating system</li>
+							<img src="Images/DockerPyCharm_06.png" alt="File Settings" class="w-100">
+							<li>Docker running on macOS</li>
+							<img src="Images/DockerPyCharm_07.png" alt="File Settings" class="w-75">
+						</ol>
+					</li>
+					<li>Add Docker to the run configuration by clicking the <b>Add Configuration</b> button on the top right corner of PyCharm.</li>
+					<img src="Images/DockerPyCharm_08.png" alt="File Settings">
+					<li>Once the <b>Run/Debug Configuration</b> window opens, click the <b>‘+’</b> icon and select <b>Docker -> Dockerfile</b></li>
+					<img src="Images/DockerPyCharm_09.png" alt="File Settings" class="w-75">
+					<li>Enter all the require information for the run configuration:
+					</br><b>Name -</b> enter a name for the run configuration
+					</br><b>Dockerfile -</b> select the dockerfile you would want to execute within this run configuration
+					</br><b>Image tag -</b> enter the tag name that will be used on image you will built
+					</br><b>Run built image -</b> ensure this checkbox is checked
+					<img src="Images/DockerPyCharm_10.png" alt="File Settings" class="w-100">
+					</li>
+					<li>Click on the <b>Run\Play</b> button in order to execute the run configuration you just set up.</li>
+					<img src="Images/DockerPyCharm_11.png" alt="File Settings">
+					<li>Confirm the output of the run configuration, in this case the output will be the barcode created on the python script.</li>
+					<img src="Images/DockerPyCharm_12.png" alt="File Settings" class="w-75">
+					<li>Add the corresponding interpreter for your environment, by clicking on the current interpreter and then <b>Add interpreter</b></li>
+					<img src="Images/DockerPyCharm_13.png" alt="File Settings">
+					<li>Select <b>Docker</b> and the corresponding <b>image name</b></li>
+					<img src="Images/DockerPyCharm_14.png" alt="File Settings">
+					<li>Select the recently created interpreter</li>
+					<img src="Images/DockerPyCharm_15.png" alt="File Settings">
+					<li>Confirm the interpreter is working properly by navigating to the interpreter settings from the same menu above. This should ensure that all the libraries required are loaded.</li>
+					<img src="Images/DockerPyCharm_16.png" alt="File Settings" class="w-100">
+				</ol>
 			</div>
 		</div>
 	</div>
