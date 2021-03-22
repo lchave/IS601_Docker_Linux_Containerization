@@ -64,6 +64,44 @@
 			</div>
 		</div>
 	</header>
+	<div class="container py-5">
+		<div class="row">
+			<div class="col-lg-10 mx-auto">
+				<h1 class="display-8 text-center">How to log into your Docker container?</h1>
+			</div>
+		</div>
+		<div class="row">
+    		<div class="col-lg-8 mx-auto text-lg-start text-dark" class="img-fluid">
+				</br></br><p>Before following these instructions please ensure you have already installed the following software:</p>
+				<ul>
+					<li><a href="https://docs.docker.com/engine/install/">Docker</a></li>
+				</ul>
+				<p>After the software is installed, you need to ensure that the Docker application is running properly on your computer.</p>
+				<ol>
+					<li>Launch the command prompt.</li>
+					<p>You can test that Docker is running properly by executing the following command:</p>
+					<code>docker run hello world</code>
+					<p>The output of these command should be as follow</p>
+					<img src="Images/dockerHelloWorld.png" alt="HelloWorld">
+					<li>Deploy your Docker container</li>
+					<ul>
+						<li>Download the image file you would like to use <b>(i.e.)</b></li>
+						<code>docker pull Ubuntu</code>
+					</ul>
+					<li>Login to the Docker container by executing the following command:</li>
+					<code>docker run -it ubuntu:latest /bin/bash</code>
+					<p>Let's break down the syntax of this command to understand how does this enable you to access the container</p>
+					<ul>
+						<li><b>run</b> - This will ensure to run the container if it is not running yet. If the container is already running you could replace run with <code>exec</code></li>
+						<li><b>-it</b> - this parameter specifies that you would like to launch and interactive session</li>
+						<li><b>ubuntu:latest</b> - this is the image name that you would like to run on the container. If the container is already running you could replace this with the container name. In oder to get a list of the existing containers run the <code>docker ps</code> command.</li>
+						<li><b>/bin/bash</b> - this represents the command you would like to run within the container, in this scenario this command will open a shell session</li>
+					</ul>
+					<li>Once you have access to the interactive session to your container you could use any of the learned <a href="LinuxCommands.html">Basic Linux Commands</a> in order to navigate through your container.</li>
+				</ol>
+			</div>
+		</div>
+	</div>	
 
 
     <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
